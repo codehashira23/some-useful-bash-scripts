@@ -1,0 +1,20 @@
+
+# Check if an argument is provided
+if [ -z "$1" ]; then
+  echo "Error: No URL provided. Usage: $0 <YouTube_URL>"
+  exit 1
+fi
+
+# Extract playlist ID from URL
+playListId=$(echo "$1" | grep -oE 'list=[A-Za-z0-9_-]+' | cut -d'=' -f2)
+
+# Check if playlist ID was extracted
+if [ -z "$playListId" ]; then
+  echo "Error: Could not extract playlist ID from URL"
+  exit 1
+fi
+
+echo "Playlist Id: $playListId"
+
+# Fetch and parse playlist length
+curl -s -d "url=$playListId" "https://yt-playlist-len.vercel.app/" | pup --color "pre text{}"
