@@ -1,0 +1,9 @@
+yt-dlp -f "bv*[height=720]+ba/best" -o "~/Downloads/YT/%(playlist_index)s - %(title)s.%(ext)s" “<playlst_url>”
+
+run this inside terminal (powershell)
+bv* → best video-only
+height<=720 → caps at 720p
++ba → best audio-only
+Merged automatically via ffmpeg
+
+you you want custom start  use this flag  : --playlist-start 23 
